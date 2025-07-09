@@ -13,17 +13,17 @@ export function Navbar(){
     ];
 
     return(
-        <nav className="fixed top-0 left-0 right-0 z-50 px-6">
-            <div className="flex flex-nowrap items-center justify-between py-5">
+        <nav className="fixed top-0 left-0 right-0 z-50 py-3 px-3">
+            <div className="flex flex-wrap items-center justify-between">
 
                 <Link onClick={() => setMenuOpen(false)} href="/" className="flex items-center justify-center">
                     <IconWritingSign stroke={1.75} className="text-yellow-300" size={40}/>
-                    <span className="custom-font-triomphe text-4xl font-bold text-white px-2">WriteSpace</span>
+                    <span className="custom-font-triomphe text-4xl font-bold text-white">WriteSpace</span>
                 </Link>
 
                 <button
                     onClick={() => setMenuOpen(!menuOpen)}
-                    className="burger-hover inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-white rounded-lg md:hidden cursor-pointer"
+                    className="burger-hover inline-flex items-center w-10 h-10 justify-center text-sm text-white rounded-lg md:hidden cursor-pointer"
                     aria-controls="navbar-default" aria-expanded={menuOpen}>
                     <svg className="w-8 h-8" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
@@ -31,7 +31,7 @@ export function Navbar(){
                 </button>
 
                 <div className={'w-full md:block md:w-auto ' + (menuOpen ? 'block' : 'hidden')} id="navbar-default">
-                    <ul className="custom-font-inter-tight flex flex-col text-center md:flex-row">
+                    <ul className="custom-font-inter-tight flex flex-col item-center md:flex-row m-3">
                         {links.map(({href, label}) => (
                             <li key={href}> 
                                 <Link onClick={() => setMenuOpen(false)} href={href}

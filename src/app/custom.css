@@ -61,3 +61,20 @@ footer{
     font-family: 'Inter-Tight';
     color: var(--custom-gray);
 }
+
+.blog-card{
+    background-color: var(--custom-black);
+    border-top: 1px solid var(--custom-gray-accent);
+    border-bottom: 1px solid var(--custom-gray-accent);
+    font-family: 'Inter-Regular';
+}
+
+.blog-card-stats{
+    background-color: var(--custom-gray-primary);
+    border: 1px solid var(--custom-gray-accent);
+}
+
+.blog-card-stats:hover{
+    color: white;
+    border: 1px solid white;
+}

@@ -2,7 +2,7 @@ import {IconBrandLinkedinFilled, IconMailFilled, IconBrandGithubFilled} from '@t
 
 export function Footer(){
     return(
-        <footer className="flex flex-col md:flex-row">
+        <footer className="flex flex-col md:flex-row p-5">
 
             <div className="flex-1 text-base text-center m-2">
                 <p>© 2025 by Rhabi Mendoza</p>
