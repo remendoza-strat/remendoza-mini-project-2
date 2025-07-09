@@ -4,6 +4,7 @@
     --custom-gray-accent: #333333;
     --custom-gray-secondary: #7e7e81;
     --custom-gray: #666666;
+    --custom-gray-main: #98989a;
 }
 
 @font-face{
@@ -31,6 +32,10 @@
 
 .custom-font-inter-regular{
     font-family: 'Inter-Regular';
+}
+
+.custom-font-gray-main{
+    color: var(--custom-gray-main)
 }
 
 body{

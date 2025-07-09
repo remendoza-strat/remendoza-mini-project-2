@@ -14,7 +14,7 @@ export function Navbar(){
 
     return(
         <nav className="fixed top-0 left-0 right-0 z-50 px-6">
-            <div className="flex flex-wrap items-center justify-between px-8 py-5">
+            <div className="flex flex-nowrap items-center justify-between py-5">
 
                 <Link onClick={() => setMenuOpen(false)} href="/" className="flex items-center justify-center">
                     <IconWritingSign stroke={1.75} className="text-yellow-300" size={40}/>
