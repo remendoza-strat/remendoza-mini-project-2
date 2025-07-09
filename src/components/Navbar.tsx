@@ -24,7 +24,7 @@ export function Navbar(){
 
                 <button
                     onClick={() => setMenuOpen(!menuOpen)}
-                    className="burger-hover inline-flex items-center w-10 h-10 justify-center text-sm text-white rounded-lg md:hidden cursor-pointer"
+                    className="nav-burger inline-flex items-center w-10 h-10 justify-center text-sm text-white rounded-lg md:hidden cursor-pointer"
                     aria-controls="navbar-default" aria-expanded={menuOpen}>
                     <svg className="w-8 h-8" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
