@@ -49,13 +49,41 @@ nav{
 
 
 
-
+/* INDEX PAGE CSS */
 .index-button-start:hover{
     color: white;
     background-color: var(--custom-black);
     border: 2px solid var(--custom-gray-accent);
 }
+/* INDEX PAGE CSS */
 
+
+
+/* VIEW PAGE CSS */
+.view-search{
+    font-family: 'Triomphe';
+    border: 2px solid var(--custom-gray-accent);
+}
+
+.view-blog-card{
+    background-color: var(--custom-black);
+    border-top: 1px solid var(--custom-gray-accent);
+    border-bottom: 1px solid var(--custom-gray-accent);
+    font-family: 'Inter-Regular';
+}
+
+.view-blog-card-button{
+    font-family: 'Triomphe';
+    color: var(--custom-gray-main);
+    background-color: var(--custom-gray-primary);
+    border: 1px solid var(--custom-gray-accent);
+}
+
+.view-blog-card-button:hover{
+    color: white;
+    border: 1px solid white;
+}
+/* VIEW PAGE CSS */
 
 
 
@@ -73,21 +101,4 @@ footer{
     border-top: 1px solid var(--custom-gray-accent);
     font-family: 'Inter-Tight';
     color: var(--custom-gray);
-}
-
-.blog-card{
-    background-color: var(--custom-black);
-    border-top: 1px solid var(--custom-gray-accent);
-    border-bottom: 1px solid var(--custom-gray-accent);
-    font-family: 'Inter-Regular';
-}
-
-.blog-card-stats{
-    background-color: var(--custom-gray-primary);
-    border: 1px solid var(--custom-gray-accent);
-}
-
-.blog-card-stats:hover{
-    color: white;
-    border: 1px solid white;
 }
