@@ -1,7 +1,58 @@
-body{
-    background-color: #141414;
+:root{
+    --custom-black: #141414;
+    --custom-gray-primary: #191919;
+    --custom-gray-accent: #333333;
+    --custom-gray-secondary: #7e7e81;
+    --custom-gray: #666666;
 }
 
-.custom-text-gray{
-    color: #666666;
+@font-face{
+    font-family: 'Triomphe';
+    src: url('/fonts/Triomphe.ttf') format('truetype');
+}
+
+@font-face{
+    font-family: 'Inter-Tight';
+    src: url('/fonts/Inter-Tight.ttf') format('truetype');
+}
+
+@font-face{
+    font-family: 'Inter-Regular';
+    src: url('/fonts/Inter-Regular.ttf') format('truetype');
+}
+
+.custom-font-triomphe{
+    font-family: 'Triomphe';
+}
+
+.custom-font-inter-tight{
+    font-family: 'Inter-Tight';
+}
+
+.custom-font-inter-regular{
+    font-family: 'Inter-Regular';
+}
+
+body{
+    background-color: var(--custom-black);
+}
+
+nav{
+    background-color: var(--custom-gray-primary);
+    border-bottom: 1px solid var(--custom-gray-accent);
+}
+
+.burger-hover:hover, .nav-active{
+    background-color: var(--custom-black);
+    border: 1px solid var(--custom-gray-accent);
+}
+
+.nav-inactive{
+    color: var(--custom-gray-secondary);
+}
+
+footer{
+    border-top: 1px solid var(--custom-gray-accent);
+    font-family: 'Inter-Tight';
+    color: var(--custom-gray);
 }
