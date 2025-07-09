@@ -47,6 +47,19 @@ nav{
     border-bottom: 1px solid var(--custom-gray-accent);
 }
 
+
+
+
+.index-button-start:hover{
+    color: white;
+    background-color: var(--custom-black);
+    border: 2px solid var(--custom-gray-accent);
+}
+
+
+
+
+
 .burger-hover:hover, .nav-active{
     background-color: var(--custom-black);
     border: 1px solid var(--custom-gray-accent);

@@ -9,7 +9,8 @@ export function Navbar(){
     const path = usePathname();
     const links = [
         {href: "/", label: "Home"},
-        {href: "/create", label: "Create Blog"}
+        {href: "/create", label: "Create Blogs"},
+        {href: "/view", label: "View Blogs"}
     ];
 
     return(

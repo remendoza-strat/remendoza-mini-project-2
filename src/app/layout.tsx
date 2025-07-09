@@ -10,9 +10,7 @@ export default function RootLayout({children} : Readonly<{children : React.React
             <body>
                 <Toaster/>
                 <Navbar/>
-                <div className="pt-25">
-                    {children}
-                </div>
+                {children}
                 <Footer/>
             </body>
         </html>
