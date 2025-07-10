@@ -1,23 +1,10 @@
 'use client';
+import type {Blog} from '@/components/Blog';
 import {useState} from 'react';
 import Link from 'next/link';
 import {Button} from '@/components/ui/button';
 import {IconBook} from '@tabler/icons-react';
 import Image from 'next/image';
-
-type Blog = {
-    id: string;
-    title: string;
-    imageUrl: string;
-    content: string;
-    author: string;
-    likes: number | null;
-    upvote: number | null;
-    downvote: number | null;
-    createdAt: Date | null;
-    updatedAt: Date | null;
-    code: string;
-};
 
 export function BlogList({blogs} : {blogs: Blog[]}){
 
