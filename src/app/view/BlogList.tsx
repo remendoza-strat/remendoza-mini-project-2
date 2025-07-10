@@ -3,7 +3,7 @@ import {useState} from 'react';
 import Link from 'next/link';
 import {Button} from '@/components/ui/button';
 import {IconBook} from '@tabler/icons-react';
-import Image from 'next/image'
+import Image from 'next/image';
 
 type Blog = {
     id: string;
