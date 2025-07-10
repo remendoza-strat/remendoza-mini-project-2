@@ -9,6 +9,8 @@ Footer          =DONE
 Navbar          =DONE
 PageTitle       =DONE
 
+/create         =DONE
+
 -------------------------------
 
 /view
@@ -18,8 +20,6 @@ PageTitle       =DONE
 -------------------------------
 
 custom.css      =OK SO FAR
-
-/create
 add loading pages
 
 -------------------------------

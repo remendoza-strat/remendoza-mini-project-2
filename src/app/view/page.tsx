@@ -14,7 +14,7 @@ export default async function View(){
 		<>
 			<div className="mt-35">
 				<PageTitle
-					title="All Blogs"
+					title="Voice of the community"
 					subtitle="Browse through all published blogs from our community of writers."
 				/>
 				<BlogList blogs={data}/>

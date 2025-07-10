@@ -26,7 +26,6 @@ export function BlogList({blogs} : {blogs: Blog[]}){
         const keyword = search.toLowerCase();
         return(
             item.title.toLowerCase().includes(keyword) ||
-            item.content.toLowerCase().includes(keyword) ||
             item.author.toLowerCase().includes(keyword)
         );
     });
@@ -40,6 +39,19 @@ export function BlogList({blogs} : {blogs: Blog[]}){
             month: '2-digit',
             day: '2-digit',
         });
+    }
+
+    function stripHtml(html: string): string {
+        if(typeof window === 'undefined') return html;
+        const div = document.createElement('div');
+        div.innerHTML = html;
+        return div.textContent || div.innerText || '';
+    }
+
+    function getExcerpt(html: string, wordLimit = 50): string {
+        const text = stripHtml(html);
+        const words = text.trim().split(/\s+/);
+        return words.length > wordLimit ? words.slice(0, wordLimit).join(' ') + '...' : text;
     }
 
     return(
@@ -80,10 +92,7 @@ export function BlogList({blogs} : {blogs: Blog[]}){
                                     <p><b>{item.title}</b></p>
                                 </div>
                                 <div className="flex-1 custom-font-gray-main text-md m-2">
-                                    <p>
-                                        {item.content.split(' ').length > 50 ? 
-                                        item.content.split(' ').slice(0, 50).join(' ') + '...' : item.content}
-                                    </p>
+                                    <p>{getExcerpt(item.content)}</p>
                                 </div>
                                 <div className="flex-1 flex text-sm m-2">
                                     <div className="me-5">

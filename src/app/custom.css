@@ -107,3 +107,23 @@ footer{
     border: 1px solid white;
 }
 /* VIEW */
+
+
+
+/* CREATE */
+.create-input-border{
+    border: 2px solid var(--custom-gray-accent);
+}
+
+.create-blog-button{
+    font-family: 'Triomphe';
+    color: var(--custom-gray-primary);
+    background-color: white;
+}
+
+.create-blog-button:hover{
+    color: white;
+    background-color: var(--custom-gray-primary);
+    border: 1px white solid;
+}
+/* CREATE */
