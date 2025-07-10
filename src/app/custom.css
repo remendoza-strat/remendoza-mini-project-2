@@ -127,3 +127,30 @@ footer{
     border: 1px white solid;
 }
 /* CREATE */
+
+
+
+/* VIEW SLUG */
+.view-slug-stats{
+    font-family: 'Inter-Tight';
+    color: var(--custom-gray-main);
+    border: 1px solid var(--custom-gray-accent);
+}
+
+.view-slug-stats:hover{
+    color: white;
+    border: 1px solid white;
+}
+
+.view-slug-button{
+    font-family: 'Triomphe';
+    color: var(--custom-gray-primary);
+    background-color: white;
+}
+
+.view-slug-button:hover{
+    color: white;
+    background-color: var(--custom-gray-primary);
+    border: 1px white solid;
+}
+/* VIEW SLUG */

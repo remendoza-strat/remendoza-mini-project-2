@@ -1,8 +1,9 @@
-/* eslint-disable @next/next/no-img-element */
 'use client';
 import {useState} from 'react';
+import Link from 'next/link';
 import {Button} from '@/components/ui/button';
 import {IconBook} from '@tabler/icons-react';
+import Image from 'next/image'
 
 type Blog = {
     id: string;
@@ -77,19 +78,19 @@ export function BlogList({blogs} : {blogs: Blog[]}){
                         <div key={item.id} 
                             className="view-blog-card flex flex-col lg:flex-row p-10">
 
-                            <div className="flex-1/3 flex items-center justify-center">
-                                <div className="w-[70%] aspect-video">
-                                    <img 
-                                        className="w-full h-full object-cover rounded-lg"
-                                        src={item.imageUrl}
-                                        alt={item.title}
-                                    />
-                                </div>
+                            <div className="flex flex-1/3 items-center justify-center m-2">
+                                <Image
+                                    src={item.imageUrl}
+                                    alt={item.title}
+                                    width={500}
+                                    height={500}
+                                    className="object-cover rounded-lg"
+                                />
                             </div>
 
                             <div className="flex-2/3 flex flex-col">
                                 <div className="flex-1 text-white text-3xl m-2">
-                                    <p><b>{item.title}</b></p>
+                                    <p><b>{item.title.split(' ').slice(0, 20).join(' ') + (item.title.split(' ').length > 50 ? '...' : '')}</b></p>
                                 </div>
                                 <div className="flex-1 custom-font-gray-main text-md m-2">
                                     <p>{getExcerpt(item.content)}</p>
@@ -126,9 +127,11 @@ export function BlogList({blogs} : {blogs: Blog[]}){
                                         </div>
                                     </div>
                                     <div className="flex-1 m-1">
-                                        <Button variant="outline" size="sm" className="view-blog-card-button rounded-md px-5 py-3">
-                                            <IconBook stroke={1}/>Read More
-                                        </Button>
+                                        <Link href={`/view/${item.id}`}>                                  
+                                            <Button variant="outline" size="sm" className="view-blog-card-button rounded-md px-5 py-3">
+                                                <IconBook stroke={1}/>Read More
+                                            </Button>
+                                        </Link>
                                     </div>
                                 </div>
                             </div>
