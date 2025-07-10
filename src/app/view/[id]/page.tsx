@@ -4,6 +4,7 @@ import {tbl_blog} from '@/db/schema';
 import {eq} from 'drizzle-orm';
 import Image from 'next/image';
 import {BlogInteractions} from '@/app/view/[id]/BlogInteractions'; 
+import Link from 'next/link';
 import {Button} from '@/components/ui/button';
 
 export default async function BlogDetail({params} : {params: Promise<{id: string}>}){
@@ -71,7 +72,9 @@ export default async function BlogDetail({params} : {params: Promise<{id: string
                         </div>
                 
                         <div className="m-2">
-                            <Button className="view-slug-button">Modify this blog</Button>
+                            <Link href={`/edit/${blog.id}`}>
+                                <Button className="view-slug-button">Modify this blog</Button>
+                            </Link>
                         </div>
 
                     </div>
