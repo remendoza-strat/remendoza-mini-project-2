@@ -23,6 +23,7 @@ export default function EditBlog({blog} : {blog: Blog}){
 		event.preventDefault();
 		const form = event.currentTarget;
 		const formData = new FormData(form);
+		formData.set("content", content);
 
 		const result = await UpdateBlog(blog.id, formData);
 		if(result.status === 1){

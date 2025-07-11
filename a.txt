@@ -1,7 +1,0 @@
-TEXTS
-font type
-color
-size
-weight
-
-<h1 className="custom-font-triomphe text-white text-4xl">Feedback from the community</h1>
