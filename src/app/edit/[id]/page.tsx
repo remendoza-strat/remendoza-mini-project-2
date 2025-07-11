@@ -1,10 +1,10 @@
-import {notFound} from 'next/navigation';
-import {db} from '@/db/drizzle';
-import {tbl_blog} from '@/db/schema';
-import {eq} from 'drizzle-orm';
-import EditBlog from '@/app/edit/[id]/EditBlog';
+import {notFound} from "next/navigation";
+import {eq} from "drizzle-orm";
+import EditBlog from "@/app/edit/[id]/EditBlog";
+import {db} from "@/db/drizzle";
+import {tbl_blog} from "@/db/schema";
 
-export default async function EditPage({params} : {params: Promise<{id: string}>}){
+export default async function Edit({params} : {params: Promise<{id: string}>}){
     const {id} = await params;
     if(!id) return notFound();
 

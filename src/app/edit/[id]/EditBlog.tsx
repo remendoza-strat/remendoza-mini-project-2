@@ -4,10 +4,10 @@ import dynamic from "next/dynamic";
 import {useState} from "react";
 import {Button} from "@/components/ui/button";
 import {toast} from "sonner";
-import {updateBlog, deleteBlog} from "@/app/edit/[id]/actions";
-import {PageTitle} from "@/components/PageTitle";
 import {useRouter} from "next/navigation";
-import {Blog} from '@/db/schema';
+import {UpdateBlog, DeleteBlog} from "@/app/edit/[id]/actions";
+import {PageTitle} from "@/components/PageTitle";
+import {Blog} from "@/db/schema";
 
 const ReactQuill = dynamic(() => import("react-quill-new"), {ssr: false});
 
@@ -19,49 +19,34 @@ export default function EditBlog({blog} : {blog: Blog}){
 	const [author, setAuthor] = useState(blog.author);
 	const [code, setCode] = useState("");
 
-	const handleSubmit = async(e: React.FormEvent<HTMLFormElement>) => {
-		e.preventDefault();
+	async function handleSubmit(event: React.FormEvent<HTMLFormElement>){
+		event.preventDefault();
+		const form = event.currentTarget;
+		const formData = new FormData(form);
 
-		const formData = new FormData();
-		formData.append("imageUrl", imageUrl);
-		formData.append("title", title);
-		formData.append("content", content);
-		formData.append("author", author);
-		formData.append("code", code);
-
-		try{
-			const result = await updateBlog(blog.id, formData);
-			if(result?.status === 2){
-				toast.error("Please complete required fields.");
-			}
-			else if(result?.status === 3){
-				toast.error("Blog code is incorrect.");
-			}
-			else if(result?.status === 1){
-				toast.success("Blog updated successfully!");
-			}	
-		} 
-		catch{
-			toast.error("Failed to update blog.");
+		const result = await UpdateBlog(blog.id, formData);
+		if(result.status === 1){
+			toast.success("Blog updated successfully!");
 		}
+		else if(result.status === 2){
+			toast.error("Please complete required fields.");
+		}
+		else if(result.status === 3){
+			toast.error("Blog code is incorrect.");
+		}	
 	};
 
 	const handleDelete = async () => {
-		try{
-			const result = await deleteBlog(blog.id, code);
-			if(result?.status === 2){
-				toast.error("Please input blog code to proceed.");
-			}
-			else if(result?.status === 3){
-				toast.error("Blog code is incorrect.");
-			}
-			else if(result?.status === 1){
-				toast.success("Blog deleted successfully!");
-				router.push("/view");
-			}	
-		} 
-		catch{
-			toast.error("Failed to delete blog.");
+		const result = await DeleteBlog(blog.id, code);
+		if(result.status === 1){
+			toast.success("Blog deleted successfully!");
+			router.push("/view");
+		}
+		else if(result.status === 2){
+			toast.error("Please input blog code to proceed.");
+		}
+		else if(result.status === 3){
+			toast.error("Blog code is incorrect.");
 		}
 	};
 
@@ -69,39 +54,39 @@ export default function EditBlog({blog} : {blog: Blog}){
 		<div className="mt-35">
 
 			<PageTitle 
-				title="Start writing your blog" 
-				subtitle="Share your thoughts, stories, or ideas with the world."
+				title="Update your blog" 
+				subtitle="Refine your content and keep your ideas fresh."
 			/>
 
 			<form onSubmit={handleSubmit} className="custom-font-inter-regular max-w-4xl w-full mx-auto flex flex-col gap-6 p-8 rounded-2xl">
 
 				<div className="flex flex-col md:flex-row gap-6 m-1">
 					<div className="w-full">
-						<label htmlFor="imageUrl" className="text-white mb-1 block font-bold">
+						<label htmlFor="imageUrl" className="text-white font-bold mb-1 block">
 							Image URL <span className="text-red-500">*</span>
 						</label>
 						<input 
 							name="imageUrl" autoComplete="off"
 							value={imageUrl}
 							onChange={(e) => setImageUrl(e.target.value)}
-							className="custom-font-inter-tight create-input-border text-white px-4 py-3 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-white"
+							className="form-input px-4 py-3 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-white"
 						/>
 					</div>
 					<div className="w-full">
-						<label htmlFor="title" className="text-white mb-1 block font-bold">
+						<label htmlFor="title" className="text-white font-bold mb-1 block">
 							Title <span className="text-red-500">*</span>
 						</label>
 						<input 
 							name="title" autoComplete="off"
 							value={title}
 							onChange={(e) => setTitle(e.target.value)}
-							className="custom-font-inter-tight create-input-border text-white px-4 py-3 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-white"
+							className="form-input px-4 py-3 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-white"
 						/>
 					</div>
 				</div>
 
 				<div className="w-full m-1">
-					<label className="text-white mb-1 block font-bold">
+					<label className="text-white font-bold mb-1 block">
 						Content <span className="text-red-500">*</span>
 					</label>
 					<div className="text-white rounded-md min-h-[400px]">
@@ -111,38 +96,38 @@ export default function EditBlog({blog} : {blog: Blog}){
 
 				<div className="flex flex-col md:flex-row gap-6 m-1">
 					<div className="w-full">
-						<label htmlFor="author" className="text-white mb-1 block font-bold">
+						<label htmlFor="author" className="text-white font-bold mb-1 block">
 							Author
 						</label>
 						<input 
 							name="author" autoComplete="off"
 							value={author}
 							onChange={(e) => setAuthor(e.target.value)}
-							className="custom-font-inter-tight create-input-border text-white px-4 py-3 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-white"
+							className="form-input px-4 py-3 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-white"
 						/>
 					</div>
 					<div className="w-full">
-						<label htmlFor="code" className="text-white mb-1 block font-bold">
-							Code (for edit/delete)<span className="text-red-500">*</span>
+						<label htmlFor="code" className="text-white font-bold mb-1 block">
+							Code (for edit/delete) <span className="text-red-500">*</span>
 						</label>
 						<input 
 							name="code" autoComplete="off"
 							value={code}
 							onChange={(e) => setCode(e.target.value)}
-							className="custom-font-inter-tight create-input-border text-white px-4 py-3 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-white"
+							className="form-input px-4 py-3 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-white"
 						/>
 					</div>
 				</div>
 
-				<Button variant="outline" size="sm" className="create-blog-button rounded-md px-5 py-3 m-1">
-					Edit
-				</Button>
+				<Button size="sm" className="button-design">
+                    Edit Blog
+                </Button>
 
 			</form>
 
 			<div className="flex justify-center mb-5">
-				<Button onClick={handleDelete} variant="outline" size="sm" className="create-blog-button rounded-md px-5 py-3 m-1">
-					Delete
+				<Button onClick={handleDelete} size="sm" className="button-design">
+					Delete Blog
 				</Button>
 			</div>
 
