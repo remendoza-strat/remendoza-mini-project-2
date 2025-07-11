@@ -91,17 +91,9 @@ footer{
 
 
 /* VIEW */
-.view-search{
-    font-family: 'Triomphe';
-    border: 2px solid var(--custom-gray-accent);
-}
 
-.view-blog-card{
-    background-color: var(--custom-black);
-    border-top: 1px solid var(--custom-gray-accent);
-    border-bottom: 1px solid var(--custom-gray-accent);
-    font-family: 'Inter-Regular';
-}
+
+
 
 .view-blog-card-button{
     font-family: 'Triomphe';
@@ -169,6 +161,34 @@ footer{
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+.view-search{
+    font-family: 'Triomphe';
+    color: white;
+    border: 2px solid var(--custom-gray-accent);
+    border-radius: 10px;
+    padding: 5px;
+    background-color: var(--custom-black);
+}
+
+.view-blog-card{
+    border-top: 1px solid var(--custom-gray-accent);
+    border-bottom: 1px solid var(--custom-gray-accent);
+    background-color: var(--custom-black);
+    font-family: 'Inter-Regular';
+}
 
 
 

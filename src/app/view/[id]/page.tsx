@@ -1,14 +1,15 @@
-import {notFound} from 'next/navigation';
-import {db} from '@/db/drizzle';
-import {tbl_blog, tbl_comment} from '@/db/schema';
-import {eq, desc} from 'drizzle-orm';
-import Image from 'next/image';
-import {BlogInteractions} from '@/app/view/[id]/BlogInteractions'; 
-import Link from 'next/link';
-import {Button} from '@/components/ui/button';
-import {CommentForm, CommentList} from './CommentSection';
+import {notFound} from "next/navigation";
+import {eq, desc} from "drizzle-orm";
+import Image from "next/image";
+import Link from "next/link";
+import {Button} from "@/components/ui/button";
+import {db} from "@/db/drizzle";
+import {tbl_blog, tbl_comment} from "@/db/schema";
+import {BlogInteractions} from "@/app/view/[id]/BlogInteractions"; 
+import {CommentForm, CommentList} from "@/app/view/[id]/CommentSection";
+import {DateTimeFormatter} from "@/app/utils/DateTimeFormatter";
 
-export default async function BlogDetail({params} : {params: Promise<{id: string}>}){
+export default async function BlogDetail({params} : {params : Promise<{id: string}>}){
     const {id} = await params;
 
     const isUUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(id);
@@ -25,10 +26,10 @@ export default async function BlogDetail({params} : {params: Promise<{id: string
 		                .select()
 		                .from(tbl_comment)
 		                .where(eq(tbl_comment.blogId, blog.id))
-		                .orderBy(desc(tbl_comment.updatedAt));
+		                .orderBy(desc(tbl_comment.createdAt));
 
 	return(
-        <>
+        <div>
             <div className="mt-24 flex flex-col gap-6">
 
                 <div>
@@ -50,27 +51,27 @@ export default async function BlogDetail({params} : {params: Promise<{id: string
                     <div className="flex flex-col md:flex-row gap-1 md:items-center">
         
                         <div
-                            className="custom-font-inter-regular flex-[3] text-white text-md text-justify m-2"
-                            dangerouslySetInnerHTML={{ __html: blog.content }}
+                            className="custom-font-inter-regular text-white text-md flex-[3] text-justify m-2"
+                            dangerouslySetInnerHTML={{__html: blog.content}}
                         />
 
                         <div className="flex-[1] flex flex-col gap-1 w-full md:w-1/3 items-center text-center justify-center">
                     
                             <BlogInteractions
                                 blogId={blog.id}
-                                likes={blog.likes ?? 0}
-                                upvote={blog.upvote ?? 0}
-                                downvote={blog.downvote ?? 0}
+                                likes={blog.likes??0}
+                                upvote={blog.upvote??0}
+                                downvote={blog.downvote??0}
                             />
 
                             <div className="flex">
                                 <div className="m-2">
                                     <p className="custom-font-inter-tight custom-font-gray-main text-sm">Creation</p>
-                                    <p className="custom-font-inter-regular text-white">{blog.createdAt?.toDateString()}</p>
+                                    <p className="custom-font-inter-regular text-white">{DateTimeFormatter(blog.createdAt)}</p>
                                 </div>
                                 <div className="m-2">
                                     <p className="custom-font-inter-tight custom-font-gray-main text-sm">Update</p>
-                                    <p className="custom-font-inter-regular text-white">{blog.updatedAt?.toDateString()}</p>
+                                    <p className="custom-font-inter-regular text-white">{DateTimeFormatter(blog.updatedAt)}</p>
                                 </div>
                             </div>
 
@@ -81,7 +82,7 @@ export default async function BlogDetail({params} : {params: Promise<{id: string
                     
                             <div className="m-2">
                                 <Link href={`/edit/${blog.id}`}>
-                                    <Button className="view-slug-button">Modify this blog</Button>
+                                    <Button size="sm" className="button-design">Modify this blog</Button>
                                 </Link>
                             </div>
 
@@ -101,6 +102,6 @@ export default async function BlogDetail({params} : {params: Promise<{id: string
                     <CommentList blogId={blog.id} comments={comments}/>
                 </div>
             </div>
-        </>
+        </div>
     );
 }

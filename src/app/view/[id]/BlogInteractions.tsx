@@ -1,8 +1,8 @@
-'use client';
-import {useTransition} from 'react';
-import {blogInteractions} from '@/app/view/[id]/actions';
-import {Button} from '@/components/ui/button';
-import {IconThumbUp, IconArrowBigUpLine, IconArrowBigDownLine} from '@tabler/icons-react';
+"use client";
+import {useTransition} from "react";
+import {Button} from "@/components/ui/button";
+import {IconThumbUp, IconArrowBigUpLine, IconArrowBigDownLine} from "@tabler/icons-react";
+import {blogInteractions} from "@/app/view/actions";
 
 interface BlogInteractionsProps{
     blogId: string;
@@ -14,33 +14,31 @@ interface BlogInteractionsProps{
 export function BlogInteractions({blogId, likes, upvote, downvote} : BlogInteractionsProps){
     const [isPending, startTransition] = useTransition();
 
-    const handleInteract = (type: 'likes' | 'upvote' | 'downvote') => {
+    const handleInteract = (type: "likes" | "upvote" | "downvote") => {
         startTransition(() => {blogInteractions(blogId, type)});
     };
 
     return(
         <div className="flex">
             <Button
-                onClick={() => handleInteract('likes')}
-                className="view-slug-stats flex py-1 px-3 rounded-full m-2"
-                disabled={isPending}>
-                    <IconThumbUp stroke={1}/>
+                onClick={() => handleInteract("likes")}
+                disabled={isPending}
+                className="interaction-button mx-2">
+                    <IconThumbUp stroke={2}/>
                     <p>{likes}</p>
             </Button>
-
             <Button
-                onClick={() => handleInteract('upvote')}
-                className="view-slug-stats flex py-1 px-3 rounded-full m-2"
-                disabled={isPending}>
-                    <IconArrowBigUpLine stroke={1}/>
+                onClick={() => handleInteract("upvote")}
+                disabled={isPending}
+                className="interaction-button mx-2">
+                    <IconArrowBigUpLine stroke={2}/>
                     <p>{upvote}</p>
             </Button>
-
             <Button
-                onClick={() => handleInteract('downvote')}
-                className="view-slug-stats flex py-1 px-3 rounded-full m-2"
-                disabled={isPending}>
-                    <IconArrowBigDownLine stroke={1}/>
+                onClick={() => handleInteract("downvote")}
+                disabled={isPending}
+                className="interaction-button mx-2">
+                    <IconArrowBigDownLine stroke={2}/>
                     <p>{downvote}</p>
             </Button>
         </div>

@@ -4,9 +4,16 @@ import {tbl_blog} from '@/db/schema';
 
 export async function BlogAdd(form : FormData){
 
+
+    function stripHtml(html: string): string {
+    return html.replace(/<[^>]+>/g, '').trim();
+}
+
+
     const imageUrl = String(form.get("imageUrl")).trim();
     const title = String(form.get("title")).trim();
-    const content = String(form.get("content")).trim();
+    const contentRaw = String(form.get("content")).trim();
+    const content = stripHtml(contentRaw);
     const author = String(form.get("author")).trim() || "anonymous";
     const code = String(form.get("code")).trim();
 
