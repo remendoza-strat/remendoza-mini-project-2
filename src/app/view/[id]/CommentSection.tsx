@@ -56,9 +56,20 @@ export function CommentList({blogId, comments} : {blogId: string; comments: Comm
 	return(
 		<div>
 			<h1 className="custom-font-triomphe text-white text-4xl m-5">Feedback from the community</h1>
-			{comments.map(comment => (
-				<CommentCard key={comment.id} comment={comment} blogId={blogId}/>
-			))}
+			
+			{comments.length === 0? 
+				(
+					<div className="custom-font-inter-regular text-white text-1xl m-5">
+						<p><b>No comments yet.</b></p>
+					</div>
+				):
+				(
+					comments.map(comment => (
+						<CommentCard key={comment.id} comment={comment} blogId={blogId}/>
+					))
+				)
+			}
+
 		</div>
 	);
 }

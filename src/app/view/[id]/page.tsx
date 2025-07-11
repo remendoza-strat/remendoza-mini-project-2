@@ -50,10 +50,11 @@ export default async function BlogDetail({params} : {params : Promise<{id: strin
 
                     <div className="flex flex-col md:flex-row gap-1 md:items-center">
         
-                        <div
-                            className="custom-font-inter-regular text-white text-md flex-[3] text-justify m-2"
-                            dangerouslySetInnerHTML={{__html: blog.content}}
-                        />
+                        <div className="flex-[3] m-2">
+                            <div className="prose prose-invert max-w-none text-white text-justify custom-font-inter-regular"
+                                dangerouslySetInnerHTML={{ __html: blog.content }}
+                            />
+                        </div>
 
                         <div className="flex-[1] flex flex-col gap-1 w-full md:w-1/3 items-center text-center justify-center">
                     

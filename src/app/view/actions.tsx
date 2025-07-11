@@ -30,9 +30,9 @@ export async function commentInteractions(commentId: string, type: "agree" | "di
 
 export async function addComment(formData : FormData){
 	const blogId = String(formData.get("blogId"));
-	const author = String(formData.get("author")) || "anonymous";
-	const content = String(formData.get("content"));
-	const code = String(formData.get("code"));
+	const author = String(formData.get("author")).trim() || "anonymous";
+	const content = String(formData.get("content")).trim();
+	const code = String(formData.get("code")).trim();
 
 	if(!content || !code){
 		return {status: 2}
@@ -49,9 +49,9 @@ export async function addComment(formData : FormData){
 export async function editComment(formData: FormData){
 	const id = String(formData.get("id"));
 	const blogId = String(formData.get("blogId"));
-	const author = String(formData.get("author")) || "anonymous";
-	const content = String(formData.get("content"));
-	const code = String(formData.get("code"));
+	const author = String(formData.get("author")).trim() || "anonymous";
+	const content = String(formData.get("content")).trim();
+	const code = String(formData.get("code")).trim();
 
 	if(!content || !code){
 		return {status: 2};
@@ -78,7 +78,7 @@ export async function editComment(formData: FormData){
 export async function deleteComment(formData: FormData){
 	const id = String(formData.get("id"));
 	const blogId = String(formData.get("blogId"));
-	const code = String(formData.get("code"));
+	const code = String(formData.get("code")).trim();
 
 	if(!code){
 		return {status: 2};

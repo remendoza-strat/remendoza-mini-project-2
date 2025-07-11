@@ -90,84 +90,6 @@ footer{
 
 
 
-/* VIEW */
-
-
-
-
-.view-blog-card-button{
-    font-family: 'Triomphe';
-    color: var(--custom-gray-main);
-    background-color: var(--custom-gray-primary);
-    border: 1px solid var(--custom-gray-accent);
-}
-
-.view-blog-card-button:hover{
-    color: white;
-    border: 1px solid white;
-}
-/* VIEW */
-
-
-
-/* CREATE */
-.create-input-border{
-    border: 2px solid var(--custom-gray-accent);
-}
-
-.create-blog-button{
-    font-family: 'Triomphe';
-    color: var(--custom-gray-primary);
-    background-color: white;
-}
-
-.create-blog-button:hover{
-    color: white;
-    background-color: var(--custom-gray-primary);
-    border: 1px white solid;
-}
-/* CREATE */
-
-
-
-/* VIEW SLUG */
-.view-slug-stats{
-    font-family: 'Inter-Tight';
-    color: var(--custom-gray-main);
-    border: 1px solid var(--custom-gray-accent);
-}
-
-.view-slug-stats:hover{
-    color: white;
-    border: 1px solid white;
-}
-
-.view-slug-button{
-    font-family: 'Triomphe';
-    color: var(--custom-gray-primary);
-    background-color: white;
-}
-
-.view-slug-button:hover{
-    color: white;
-    background-color: var(--custom-gray-primary);
-    border: 1px white solid;
-}
-/* VIEW SLUG */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -190,8 +112,11 @@ footer{
     font-family: 'Inter-Regular';
 }
 
-
-
+.form-input{
+    font-family: 'Inter-Regular';
+    color: white;
+    border: 2px solid var(--custom-gray-accent);
+}
 
 .button-design{
     font-family: 'Triomphe';
