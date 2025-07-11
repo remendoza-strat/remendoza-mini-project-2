@@ -1,5 +1,5 @@
 'use client';
-import type {Blog} from '@/components/Blog';
+import {Blog} from '@/db/schema';
 import {useState} from 'react';
 import Link from 'next/link';
 import {Button} from '@/components/ui/button';

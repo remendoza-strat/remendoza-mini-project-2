@@ -5,9 +5,9 @@ import {useState} from "react";
 import {Button} from "@/components/ui/button";
 import {toast} from "sonner";
 import {updateBlog, deleteBlog} from "@/app/edit/[id]/actions";
-import type {Blog} from "@/components/Blog";
 import {PageTitle} from "@/components/PageTitle";
 import {useRouter} from "next/navigation";
+import {Blog} from '@/db/schema';
 
 const ReactQuill = dynamic(() => import("react-quill-new"), {ssr: false});
 
