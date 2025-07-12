@@ -50,9 +50,6 @@ body{
     background-color: var(--custom-black);
 }
 
-
-
-/* NAV */
 nav{
     background-color: var(--custom-gray-primary);
     border-bottom: 1px solid var(--custom-gray-accent);
@@ -67,35 +64,12 @@ nav{
 .nav-inactive{
     color: var(--custom-gray-secondary);
 }
-/* NAV */
 
-
-
-/* FOOTER */
 footer{
     border-top: 1px solid var(--custom-gray-accent);
     font-family: 'Inter-Tight';
     color: var(--custom-gray);
 }
-/* FOOTER */
-
-
-
-/* INDEX */
-.index-button-start:hover{
-    color: white;
-    background-color: var(--custom-black);
-    border: 2px solid var(--custom-gray-accent);
-}
-/* INDEX */
-
-
-
-
-
-
-
-
 
 .view-search{
     font-family: 'Triomphe';

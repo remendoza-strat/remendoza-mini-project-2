@@ -122,7 +122,7 @@ function CommentCard({comment, blogId} : {comment: Comment; blogId: string}){
 			setCode("");
 		}
 		else if(result.status === 2){
-			toast.error("Please put the code to proceed.");
+			toast.error("Please input comment code to proceed.");
 		}
 		else if(result.status === 3){
 			toast.error("Code to delete is wrong.");
@@ -182,8 +182,8 @@ function CommentCard({comment, blogId} : {comment: Comment; blogId: string}){
 					<div className="custom-bg-gray m-2 p-3 space-y-2 rounded-md">
 
 						<div className="flex justify-between items-center">
-							<p className="custom-font-triomphe text-white text-3xl">{comment.author}</p>
-							<p className="custom-font-inter-tight custom-font-gray text-sm">
+							<p className="custom-font-triomphe text-white text-3xl m-1">{comment.author}</p>
+							<p className="custom-font-inter-tight custom-font-gray text-sm m-1">
 								{DateTimeFormatter(comment.createdAt)}
 							</p>
 						</div>
@@ -211,7 +211,7 @@ function CommentCard({comment, blogId} : {comment: Comment; blogId: string}){
 							<Button
 								onClick={() => setEditMode(true)}
 								className="button-design">
-								Modify
+								Modify this comment
 							</Button>
 						</div>
 
