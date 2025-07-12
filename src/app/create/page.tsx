@@ -5,7 +5,7 @@ import {useState} from "react";
 import {toast} from "sonner";
 import {Button} from "@/components/ui/button";
 import {PageTitle} from "@/components/PageTitle";
-import {BlogAdd} from "@/app/create/BlogAdd";
+import {addBlog} from "@/app/utils/BlogActions";
 
 const ReactQuill = dynamic(() => import("react-quill-new"), {ssr: false});
 
@@ -14,11 +14,13 @@ export default function Create(){
 
   	async function handleSubmit(event: React.FormEvent<HTMLFormElement>){
    		event.preventDefault();
+
 		const form = event.currentTarget;
 		const formData = new FormData(form);
 		formData.set("content", content);
+		
+		const result = await addBlog(formData);
 
-		const result = await BlogAdd(formData);
 		if(result.status === 1){
 			toast.success("Blog created successfully!");
 			form.reset();

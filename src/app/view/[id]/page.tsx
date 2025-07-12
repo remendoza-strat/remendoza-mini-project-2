@@ -83,7 +83,9 @@ export default async function BlogDetail({params} : {params: Promise<{id: string
                     
                             <div className="m-2">
                                 <Link href={`/edit/${blog.id}`}>
-                                    <Button size="sm" className="button-design">Modify this blog</Button>
+                                    <Button size="sm" className="button-design">
+                                        Modify this blog
+                                    </Button>
                                 </Link>
                             </div>
 

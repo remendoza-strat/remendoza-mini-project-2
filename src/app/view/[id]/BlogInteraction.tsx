@@ -2,7 +2,7 @@
 import {useTransition} from "react";
 import {Button} from "@/components/ui/button";
 import {IconThumbUp, IconArrowBigUpLine, IconArrowBigDownLine} from "@tabler/icons-react";
-import {blogInteractions} from "@/app/view/actions";
+import {blogInteractions} from "@/app/utils/BlogActions";
 
 interface BlogInteractionsProps{
     blogId: string;

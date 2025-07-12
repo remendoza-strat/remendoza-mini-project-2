@@ -4,7 +4,7 @@ import {Button} from "@/components/ui/button";
 import {IconThumbDown, IconThumbUp} from "@tabler/icons-react";
 import {toast} from "sonner";
 import {Comment} from "@/db/schema";
-import {addComment, editComment, deleteComment, commentInteractions} from "@/app/view/actions";
+import {addComment, updateComment, deleteComment, commentInteractions} from "@/app/utils/CommentActions";
 import {DateTimeFormatter} from "@/app/utils/DateTimeFormatter";
 
 export function CommentForm({blogId} : {blogId: string}){
@@ -46,7 +46,7 @@ export function CommentForm({blogId} : {blogId: string}){
 			<input name="code" autoComplete="off" className="text-input"/>
 
 			<Button size="sm" className="button-design mt-3 my-1">
-				Post comment
+				Post Comment
 			</Button>	
 		</form>
 	);
@@ -81,19 +81,19 @@ function CommentCard({comment, blogId} : {comment: Comment; blogId: string}){
 	const [code, setCode] = useState("");
 	const [isPending, startTransition] = useTransition();
 
-	const handleVote = (type: "agree" | "disagree") => {
+	const handleInteract = (type: "agree" | "disagree") => {
 		startTransition(() => commentInteractions(comment.id, type));
 	};
 
-	const handleEdit = async () => {
+	const handleUpdate = async () => {
 		const formData = new FormData();
-		formData.append("id", comment.id);
+		formData.append("commentId", comment.id);
 		formData.append("blogId", blogId);
 		formData.append("author", author);
 		formData.append("content", content);
 		formData.append("code", code);
 		
-		const result = await editComment(formData);
+		const result = await updateComment(formData);
 		
 		if(result.status === 1){
 			toast.success("Comment updated successfully!");
@@ -110,7 +110,7 @@ function CommentCard({comment, blogId} : {comment: Comment; blogId: string}){
 
 	const handleDelete = async () => {
 		const formData = new FormData();
-		formData.append("id", comment.id);
+		formData.append("commentId", comment.id);
 		formData.append("blogId", blogId);
 		formData.append("code", code);
 
@@ -157,20 +157,23 @@ function CommentCard({comment, blogId} : {comment: Comment; blogId: string}){
 
 							<div className="flex gap-2 flex-wrap mt-3 justify-end">
 								<Button
-									onClick={handleEdit}
+									onClick={handleUpdate}
+									size="sm"
 									className="button-design">
-										Edit
+										Update
 								</Button>
 								<Button
 									onClick={() => {
 										setEditMode(false);
 										setCode("");
 									}}
+									size="sm"
 									className="button-design">
 										Cancel
 								</Button>
 								<Button
 									onClick={handleDelete}
+									size="sm"
 									className="button-design">
 										Delete
 								</Button>
@@ -194,13 +197,13 @@ function CommentCard({comment, blogId} : {comment: Comment; blogId: string}){
 
 						<div className="flex gap-2 mt-3">
 							<Button
-								onClick={() => handleVote("agree")}
+								onClick={() => handleInteract("agree")}
 								className="interaction-button"
 								disabled={isPending}>
 								<IconThumbUp stroke={2}/> {comment.agree??0}
 							</Button>
 							<Button
-								onClick={() => handleVote("disagree")}
+								onClick={() => handleInteract("disagree")}
 								className="interaction-button"
 								disabled={isPending}>
 								<IconThumbDown stroke={2}/> {comment.disagree??0}
@@ -210,6 +213,7 @@ function CommentCard({comment, blogId} : {comment: Comment; blogId: string}){
 						<div className="pt-1 text-right">
 							<Button
 								onClick={() => setEditMode(true)}
+								size="sm"
 								className="button-design">
 								Modify this comment
 							</Button>

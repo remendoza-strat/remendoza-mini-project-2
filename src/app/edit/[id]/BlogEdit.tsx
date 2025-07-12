@@ -5,7 +5,7 @@ import {useState} from "react";
 import {Button} from "@/components/ui/button";
 import {toast} from "sonner";
 import {useRouter} from "next/navigation";
-import {updateBlog, deleteBlog} from "@/app/edit/[id]/actions";
+import {updateBlog, deleteBlog} from "@/app/utils/BlogActions";
 import {PageTitle} from "@/components/PageTitle";
 import {Blog} from "@/db/schema";
 
@@ -19,13 +19,17 @@ export function BlogEdit({blog} : {blog: Blog}){
 	const [author, setAuthor] = useState(blog.author);
 	const [code, setCode] = useState("");
 
-	async function handleSubmit(event: React.FormEvent<HTMLFormElement>){
-		event.preventDefault();
-		const form = event.currentTarget;
-		const formData = new FormData(form);
+	const handleUpdate = async () => {
+		const formData = new FormData();
+		formData.set("blogId", blog.id);
+		formData.set("imageUrl", imageUrl);
+		formData.set("title", title);
 		formData.set("content", content);
+		formData.set("author", author);
+		formData.set("code", code);
 
-		const result = await updateBlog(blog.id, formData);
+		const result = await updateBlog(formData);
+
 		if(result.status === 1){
 			toast.success("Blog updated successfully!");
 		}
@@ -35,10 +39,15 @@ export function BlogEdit({blog} : {blog: Blog}){
 		else if(result.status === 3){
 			toast.error("Blog code is incorrect.");
 		}	
-	};
+	}
 
 	const handleDelete = async () => {
-		const result = await deleteBlog(blog.id, code);
+		const formData = new FormData();
+		formData.append("blogId", blog.id);
+		formData.append("code", code);
+
+		const result = await deleteBlog(formData);
+		
 		if(result.status === 1){
 			toast.success("Blog deleted successfully!");
 			router.push("/view");
@@ -59,7 +68,7 @@ export function BlogEdit({blog} : {blog: Blog}){
 				subtitle="Refine your content and keep your ideas fresh."
 			/>
 
-			<form onSubmit={handleSubmit} className="custom-font-inter-regular max-w-4xl w-full mx-auto flex flex-col gap-6 p-8 rounded-2xl">
+			<form onSubmit={e => e.preventDefault()} className="custom-font-inter-regular max-w-4xl w-full mx-auto flex flex-col gap-6 p-8 rounded-2xl">
 
 				<div className="flex flex-col md:flex-row gap-6 m-1">
 					<div className="w-full">
@@ -120,17 +129,15 @@ export function BlogEdit({blog} : {blog: Blog}){
 					</div>
 				</div>
 
-				<Button size="sm" className="button-design">
-                    Edit Blog
+				<Button onClick={handleUpdate} size="sm" className="button-design">
+                    Update Blog
                 </Button>
 
-			</form>
-
-			<div className="flex justify-center mb-5">
 				<Button onClick={handleDelete} size="sm" className="button-design">
 					Delete Blog
 				</Button>
-			</div>
+
+			</form>
 
 		</div>
 	);
