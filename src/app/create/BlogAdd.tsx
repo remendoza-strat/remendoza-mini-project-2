@@ -3,7 +3,7 @@ import {db} from "@/db/drizzle";
 import {tbl_blog} from "@/db/schema";
 import {StripHTML} from "@/app/utils/StripHTML";
 
-export async function BlogAdd(form : FormData){
+export async function BlogAdd(form: FormData){
 
     const contentRaw = StripHTML(String(form.get("content")).trim());
 

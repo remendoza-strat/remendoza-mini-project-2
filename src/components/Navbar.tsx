@@ -1,8 +1,8 @@
-'use client';
-import {useState} from 'react';
-import {usePathname} from 'next/navigation';
-import Link from 'next/link';
-import {IconWritingSign} from '@tabler/icons-react';
+"use client";
+import {useState} from "react";
+import {usePathname} from "next/navigation";
+import Link from "next/link";
+import {IconWritingSign} from "@tabler/icons-react";
 
 export function Navbar(){
     const [menuOpen, setMenuOpen] = useState(false);
@@ -19,7 +19,7 @@ export function Navbar(){
 
                 <Link onClick={() => setMenuOpen(false)} href="/" className="flex items-center justify-center">
                     <IconWritingSign stroke={1.75} className="text-yellow-300" size={40}/>
-                    <span className="custom-font-triomphe text-4xl font-bold text-white">WriteSpace</span>
+                    <span className="custom-font-triomphe text-white text-4xl font-bold">WriteSpace</span>
                 </Link>
 
                 <button
@@ -31,13 +31,13 @@ export function Navbar(){
                     </svg>
                 </button>
 
-                <div className={'w-full md:block md:w-auto ' + (menuOpen ? 'block' : 'hidden')} id="navbar-default">
+                <div className={"w-full md:block md:w-auto " + (menuOpen ? "block" : "hidden")} id="navbar-default">
                     <ul className="custom-font-inter-tight flex flex-col item-center md:flex-row m-3">
                         {links.map(({href, label}) => (
                             <li key={href}> 
                                 <Link onClick={() => setMenuOpen(false)} href={href}
                                     className={`px-2 py-1 rounded-md block m-2 border-b-2 border-transparent hover:border-white transition-all duration-200 ${
-                                    path === href ? "nav-active text-white" : "nav-inactive"}`}>
+                                    path === href ? "nav-active" : "nav-inactive"}`}>
                                     {label}
                                 </Link>
                             </li>

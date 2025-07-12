@@ -28,7 +28,7 @@ export async function commentInteractions(commentId: string, type: "agree" | "di
 	revalidatePath(`/view`);
 }
 
-export async function addComment(formData : FormData){
+export async function addComment(formData: FormData){
 	const blogId = String(formData.get("blogId"));
 	const author = String(formData.get("author")).trim() || "anonymous";
 	const content = String(formData.get("content")).trim();

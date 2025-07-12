@@ -1,6 +1,6 @@
-import Link from 'next/link';
-import {Button} from '@/components/ui/button';
-import {IconArrowRight} from '@tabler/icons-react';
+import Link from "next/link";
+import {Button} from "@/components/ui/button";
+import {IconArrowRight} from "@tabler/icons-react";
 
 export default function Index(){
     return(
@@ -13,7 +13,7 @@ export default function Index(){
                     WriteSpace is the digital haven for writers, storytellers, and thinkers. Whether you are sharing life lessons, exploring new ideas, or documenting your creative journey, WriteSpace gives you a clean, distraction-free platform to publish your voice to the world.
                 </p>
                 <Link href="/create">
-                    <Button variant="outline" size="sm" className="index-button-start">
+                    <Button size="sm" className="button-design">
                         Start writing now <IconArrowRight/>
                     </Button>
                 </Link>       

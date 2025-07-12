@@ -5,13 +5,13 @@ import {useState} from "react";
 import {Button} from "@/components/ui/button";
 import {toast} from "sonner";
 import {useRouter} from "next/navigation";
-import {UpdateBlog, DeleteBlog} from "@/app/edit/[id]/actions";
+import {updateBlog, deleteBlog} from "@/app/edit/[id]/actions";
 import {PageTitle} from "@/components/PageTitle";
 import {Blog} from "@/db/schema";
 
 const ReactQuill = dynamic(() => import("react-quill-new"), {ssr: false});
 
-export default function EditBlog({blog} : {blog: Blog}){
+export function BlogEdit({blog} : {blog: Blog}){
 	const router = useRouter();
 	const [imageUrl, setImageUrl] = useState(blog.imageUrl);
 	const [title, setTitle] = useState(blog.title);
@@ -25,7 +25,7 @@ export default function EditBlog({blog} : {blog: Blog}){
 		const formData = new FormData(form);
 		formData.set("content", content);
 
-		const result = await UpdateBlog(blog.id, formData);
+		const result = await updateBlog(blog.id, formData);
 		if(result.status === 1){
 			toast.success("Blog updated successfully!");
 		}
@@ -38,7 +38,7 @@ export default function EditBlog({blog} : {blog: Blog}){
 	};
 
 	const handleDelete = async () => {
-		const result = await DeleteBlog(blog.id, code);
+		const result = await deleteBlog(blog.id, code);
 		if(result.status === 1){
 			toast.success("Blog deleted successfully!");
 			router.push("/view");

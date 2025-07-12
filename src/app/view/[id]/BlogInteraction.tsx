@@ -11,7 +11,7 @@ interface BlogInteractionsProps{
     downvote: number;
 }
 
-export function BlogInteractions({blogId, likes, upvote, downvote} : BlogInteractionsProps){
+export function BlogInteraction({blogId, likes, upvote, downvote} : BlogInteractionsProps){
     const [isPending, startTransition] = useTransition();
 
     const handleInteract = (type: "likes" | "upvote" | "downvote") => {

@@ -1,4 +1,4 @@
-import {IconBrandLinkedinFilled, IconMailFilled, IconBrandGithubFilled} from '@tabler/icons-react';
+import {IconBrandLinkedinFilled, IconMailFilled, IconBrandGithubFilled} from "@tabler/icons-react";
 
 export function Footer(){
     return(

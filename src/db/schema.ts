@@ -1,5 +1,5 @@
 import {pgTable, uuid, text, integer, timestamp} from "drizzle-orm/pg-core";
-import {relations, InferSelectModel, InferInsertModel} from "drizzle-orm";
+import {InferSelectModel} from "drizzle-orm";
 
 // table blog
 export const tbl_blog = pgTable("tbl_blog", {
@@ -29,21 +29,6 @@ export const tbl_comment = pgTable("tbl_comment", {
   	code: text("code").notNull()
 });
 
-// define one to many relationship
-export const blogRelations = relations(tbl_blog, ({many}) => ({
-  	comments: many(tbl_comment)
-}));
-
-// define many to one relationship
-export const commentRelations = relations(tbl_comment, ({one}) => ({
-	blog: one(tbl_blog, {
-		fields: [tbl_comment.blogId],
-		references: [tbl_blog.id]
-	})
-}));
-
 // create export variables
 export type Blog = InferSelectModel<typeof tbl_blog>;   
-export type NewBlog = InferInsertModel<typeof tbl_blog>;
 export type Comment = InferSelectModel<typeof tbl_comment>;
-export type NewComment = InferInsertModel<typeof tbl_comment>;

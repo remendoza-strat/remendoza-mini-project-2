@@ -5,11 +5,11 @@ import Link from "next/link";
 import {Button} from "@/components/ui/button";
 import {db} from "@/db/drizzle";
 import {tbl_blog, tbl_comment} from "@/db/schema";
-import {BlogInteractions} from "@/app/view/[id]/BlogInteractions"; 
+import {BlogInteraction} from "@/app/view/[id]/BlogInteraction"; 
 import {CommentForm, CommentList} from "@/app/view/[id]/CommentSection";
 import {DateTimeFormatter} from "@/app/utils/DateTimeFormatter";
 
-export default async function BlogDetail({params} : {params : Promise<{id: string}>}){
+export default async function BlogDetail({params} : {params: Promise<{id: string}>}){
     const {id} = await params;
 
     const isUUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(id);
@@ -58,7 +58,7 @@ export default async function BlogDetail({params} : {params : Promise<{id: strin
 
                         <div className="flex-[1] flex flex-col gap-1 w-full md:w-1/3 items-center text-center justify-center">
                     
-                            <BlogInteractions
+                            <BlogInteraction
                                 blogId={blog.id}
                                 likes={blog.likes??0}
                                 upvote={blog.upvote??0}

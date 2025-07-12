@@ -5,8 +5,7 @@ import {db} from "@/db/drizzle";
 import {tbl_blog} from "@/db/schema";
 import {StripHTML} from "@/app/utils/StripHTML";
 
-export async function UpdateBlog(id: string, form: FormData){
-	
+export async function updateBlog(id: string, form: FormData){
 	const contentRaw = StripHTML(String(form.get("content")).trim());
 
 	const imageUrl = (form.get("imageUrl")?.toString().trim()) || "";
@@ -36,7 +35,7 @@ export async function UpdateBlog(id: string, form: FormData){
 	return {status: 1};
 }
 
-export async function DeleteBlog(id: string, code: string){
+export async function deleteBlog(id: string, code: string){
 	if(!code){
 		return {status: 2};
 	}

@@ -1,9 +1,4 @@
-interface PageTitleData{
-    title: string,
-    subtitle: string
-}
-
-export function PageTitle({title, subtitle} : PageTitleData){
+export function PageTitle({title, subtitle} : {title: string, subtitle: string}){
     return(
         <div className="m-5">
             <h1 className="custom-font-triomphe text-white text-5xl my-2">

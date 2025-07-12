@@ -10,9 +10,11 @@ import {DateTimeFormatter} from "@/app/utils/DateTimeFormatter";
 export function CommentForm({blogId} : {blogId: string}){
 	async function handleSubmit(event: React.FormEvent<HTMLFormElement>){
 		event.preventDefault();
+		
 		const form = event.currentTarget;
 		const formData = new FormData(form);
-		
+		formData.append("blogId", blogId);
+
 		const result = await addComment(formData);
 
 		if(result.status === 1){
@@ -26,8 +28,6 @@ export function CommentForm({blogId} : {blogId: string}){
 
 	return(
 		<form onSubmit={handleSubmit} className="flex flex-col">
-			<input type="hidden" name="blogId" value={blogId}/>
-
 			<h1 className="custom-font-triomphe text-white text-4xl">Leave your comment here</h1>
 			
 			<label htmlFor="author" className="custom-font-inter-tight text-white text-lg block m-2">
