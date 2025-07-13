@@ -36,7 +36,8 @@ export async function addBlog(form: FormData){
             .insert(tbl_blog)
             .values({title, imageUrl, content, author, code});
 
-    // return value to display success toast
+    // revalidate path and return value to display success toast
+    revalidatePath(`/view`);
     return {status: 1};
 }
 
@@ -105,6 +106,7 @@ export async function deleteBlog(form: FormData){
             .delete(tbl_blog)
             .where(eq(tbl_blog.id, blogId));
 
-    // return value to display success toast
+    // revalidate path and return value to display success toast
+    revalidatePath(`/view`);
     return {status: 1};
 }
