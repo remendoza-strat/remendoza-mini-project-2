@@ -43,7 +43,7 @@ export function BlogList({blogs} : {blogs: Blog[]}){
             {filtered.length === 0? 
                 (
                     <div className="custom-font-inter-regular text-white text-3xl m-5">
-                        <p><b>No blog posts found.</b></p>
+                        <p><b>No blog post found.</b></p>
                     </div>
                 ) : 
                 (
@@ -89,13 +89,13 @@ export function BlogList({blogs} : {blogs: Blog[]}){
                                         </div>
                                         <div className="me-3">
                                             <p className="custom-font-gray-main">
-                                                Upvote: 
+                                                Upvotes: 
                                                 <span className="text-white m-1">{item.upvote}</span>
                                             </p>
                                         </div>
                                         <div className="me-3">
                                             <p className="custom-font-gray-main">
-                                                Downvote: 
+                                                Downvotes: 
                                                 <span className="text-white m-1">{item.downvote}</span>
                                             </p>
                                         </div>
