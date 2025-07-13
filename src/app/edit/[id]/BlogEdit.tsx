@@ -12,14 +12,19 @@ import {Blog} from "@/db/schema";
 const ReactQuill = dynamic(() => import("react-quill-new"), {ssr: false});
 
 export function BlogEdit({blog} : {blog: Blog}){
+	// create a router
 	const router = useRouter();
+
+	// create hooks for input
 	const [imageUrl, setImageUrl] = useState(blog.imageUrl);
 	const [title, setTitle] = useState(blog.title);
 	const [content, setContent] = useState(blog.content);
 	const [author, setAuthor] = useState(blog.author);
 	const [code, setCode] = useState("");
 
+	// for update
 	const handleUpdate = async () => {
+		// create form data and add input contents
 		const formData = new FormData();
 		formData.set("blogId", blog.id);
 		formData.set("imageUrl", imageUrl);
@@ -28,8 +33,10 @@ export function BlogEdit({blog} : {blog: Blog}){
 		formData.set("author", author);
 		formData.set("code", code);
 
+		// execute update blog and assign result
 		const result = await updateBlog(formData);
 
+		// display toast and perform actions based on result
 		if(result.status === 1){
 			toast.success("Blog updated successfully!");
 		}
@@ -41,13 +48,17 @@ export function BlogEdit({blog} : {blog: Blog}){
 		}	
 	}
 
+	// for delete
 	const handleDelete = async () => {
+		// create form data and add input contents
 		const formData = new FormData();
 		formData.append("blogId", blog.id);
 		formData.append("code", code);
 
+		// execute delete blog and assign result
 		const result = await deleteBlog(formData);
 		
+		// display toast and perform actions based on result
 		if(result.status === 1){
 			toast.success("Blog deleted successfully!");
 			router.push("/view");

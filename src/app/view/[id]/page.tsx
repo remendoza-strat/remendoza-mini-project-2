@@ -10,18 +10,21 @@ import {CommentForm, CommentList} from "@/app/view/[id]/CommentSection";
 import {DateTimeFormatter} from "@/app/utils/DateTimeFormatter";
 
 export default async function BlogDetail({params} : {params: Promise<{id: string}>}){
+    // get id
     const {id} = await params;
 
+    // check validity of id
     const isUUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(id);
     if(!isUUID) return notFound();
 
+    // get data of the blog
     const [blog] = await db
                         .select()
                         .from(tbl_blog)
                         .where(eq(tbl_blog.id, id));
-
     if(!blog) return notFound();
 
+    // get comments of the blog
     const comments = await db
 		                .select()
 		                .from(tbl_comment)

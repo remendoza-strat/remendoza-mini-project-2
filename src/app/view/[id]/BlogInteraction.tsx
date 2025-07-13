@@ -4,6 +4,7 @@ import {Button} from "@/components/ui/button";
 import {IconThumbUp, IconArrowBigUpLine, IconArrowBigDownLine} from "@tabler/icons-react";
 import {blogInteractions} from "@/app/utils/BlogActions";
 
+// interface for props
 interface BlogInteractionsProps{
     blogId: string;
     likes: number;
@@ -12,8 +13,10 @@ interface BlogInteractionsProps{
 }
 
 export function BlogInteraction({blogId, likes, upvote, downvote} : BlogInteractionsProps){
+    // hook for transition 
     const [isPending, startTransition] = useTransition();
 
+    // call blog interaction and send type of interaction done
     const handleInteract = (type: "likes" | "upvote" | "downvote") => {
         startTransition(() => {blogInteractions(blogId, type)});
     };

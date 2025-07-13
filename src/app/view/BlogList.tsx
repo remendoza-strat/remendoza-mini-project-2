@@ -6,10 +6,13 @@ import {Button} from "@/components/ui/button";
 import {IconBook} from "@tabler/icons-react";
 import {Blog} from "@/db/schema";
 import {DateTimeFormatter} from "@/app/utils/DateTimeFormatter";
+import {StripHTML} from "@/app/utils/StripHTML";
 
 export function BlogList({blogs} : {blogs: Blog[]}){
+    // create hook for search input
     const [search, setSearch] = useState("");
 
+    // search through blog title and author
     const filtered = blogs.filter((item) => {
         const keyword = search.toLowerCase();
         return(
@@ -18,12 +21,9 @@ export function BlogList({blogs} : {blogs: Blog[]}){
         );
     });
 
-    function stripHTML(html: string): string{
-        return html.replace(/<[^>]+>/g, '').trim();
-    }
-
+    // remove html tags and format displaying of content preview
     function getContent(html: string, wordLimit = 50): string{
-        const text = stripHTML(html);
+        const text = StripHTML(html);
         const words = text.trim().split(/\s+/);
         return words.length > wordLimit ? words.slice(0, wordLimit).join(" ") + " ..." : text;
     }

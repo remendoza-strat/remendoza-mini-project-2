@@ -5,10 +5,12 @@ import {PageTitle} from "@/components/PageTitle";
 import {BlogList} from "@/app/view/BlogList";
 
 export default async function View(){
+	// get all blogs and order it by difference of upvote and downvote
 	const blogs = await db
 					.select()
 					.from(tbl_blog)
 					.orderBy(sql`${tbl_blog.upvote} - ${tbl_blog.downvote} DESC`);
+					
 	return(
 		<div className="mt-35">
 			<PageTitle

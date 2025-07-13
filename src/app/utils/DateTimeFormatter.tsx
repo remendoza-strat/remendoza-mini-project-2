@@ -1,3 +1,6 @@
+// function to convert utc to ph time
+// return month day year at hours minutes 
+
 export function DateTimeFormatter(date: Date | string | null): string{
     if(!date) return "Unknown date";
     

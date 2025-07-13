@@ -10,17 +10,23 @@ import {addBlog} from "@/app/utils/BlogActions";
 const ReactQuill = dynamic(() => import("react-quill-new"), {ssr: false});
 
 export default function Create(){
+	// create hook for content
   	const [content, setContent] = useState("");
 
+	// handle submission of form
   	async function handleSubmit(event: React.FormEvent<HTMLFormElement>){
-   		event.preventDefault();
+   		// prevent page reload
+		event.preventDefault();
 
+		// create form data and append content
 		const form = event.currentTarget;
 		const formData = new FormData(form);
 		formData.set("content", content);
 		
+		// execute add blog and assign result
 		const result = await addBlog(formData);
 
+		// display toast and perform actions based on result
 		if(result.status === 1){
 			toast.success("Blog created successfully!");
 			form.reset();

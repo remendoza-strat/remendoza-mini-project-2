@@ -8,15 +8,20 @@ import {addComment, updateComment, deleteComment, commentInteractions} from "@/a
 import {DateTimeFormatter} from "@/app/utils/DateTimeFormatter";
 
 export function CommentForm({blogId} : {blogId: string}){
+	// handle submission of form
 	async function handleSubmit(event: React.FormEvent<HTMLFormElement>){
+		// prevent page reload	
 		event.preventDefault();
 		
+		// create form data and append blog id
 		const form = event.currentTarget;
 		const formData = new FormData(form);
 		formData.append("blogId", blogId);
 
+		// execute add comment and assign result
 		const result = await addComment(formData);
 
+		// display toast and perform actions based on result
 		if(result.status === 1){
 			toast.success("Comment created successfully!");
 			form.reset();
@@ -75,17 +80,21 @@ export function CommentList({blogId, comments} : {blogId: string; comments: Comm
 }
 
 function CommentCard({comment, blogId} : {comment: Comment; blogId: string}){
+	// create hooks for input
 	const [editMode, setEditMode] = useState(false);
 	const [author, setAuthor] = useState(comment.author);
 	const [content, setContent] = useState(comment.content);
 	const [code, setCode] = useState("");
 	const [isPending, startTransition] = useTransition();
 
+	// call comment interaction and send type of interaction done
 	const handleInteract = (type: "agree" | "disagree") => {
 		startTransition(() => commentInteractions(comment.id, type));
 	};
 
+	// for update
 	const handleUpdate = async () => {
+		// create form data and add input contents
 		const formData = new FormData();
 		formData.append("commentId", comment.id);
 		formData.append("blogId", blogId);
@@ -93,8 +102,10 @@ function CommentCard({comment, blogId} : {comment: Comment; blogId: string}){
 		formData.append("content", content);
 		formData.append("code", code);
 		
+		// execute update comment and assign result
 		const result = await updateComment(formData);
 		
+		// display toast and perform actions based on result
 		if(result.status === 1){
 			toast.success("Comment updated successfully!");
 			setEditMode(false);
@@ -108,14 +119,18 @@ function CommentCard({comment, blogId} : {comment: Comment; blogId: string}){
 		}
 	};
 
+	// for delete
 	const handleDelete = async () => {
+		// create form data and add input contents
 		const formData = new FormData();
 		formData.append("commentId", comment.id);
 		formData.append("blogId", blogId);
 		formData.append("code", code);
 
+		// execute delete comment and assign result
 		const result = await deleteComment(formData);
 
+		// display toast and perform actions based on result
 		if(result.status === 1){
 			toast.success("Comment deleted successfully!");
 			setEditMode(false);
