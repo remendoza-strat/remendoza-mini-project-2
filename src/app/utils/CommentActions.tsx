@@ -4,14 +4,14 @@ import {revalidatePath} from "next/cache";
 import {db} from "@/db/drizzle";
 import {tbl_comment} from "@/db/schema";
 
-export async function commentInteractions(commentId: string, type: "agree" | "disagree"){
+export async function commentInteractions(commentId: string, blogId: string, type: "agree" | "disagree"){
     // update value based on column type
     await db.update(tbl_comment)
         .set({
             [type]: sql `${sql.identifier(type)} + 1`
         })
         .where(eq(tbl_comment.id, commentId));
-    revalidatePath(`/view`);
+    revalidatePath(`/view/${blogId}`);
 }
 
 export async function addComment(form: FormData){

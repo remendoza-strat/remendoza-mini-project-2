@@ -89,7 +89,7 @@ function CommentCard({comment, blogId} : {comment: Comment; blogId: string}){
 
 	// call comment interaction and send type of interaction done
 	const handleInteract = (type: "agree" | "disagree") => {
-		startTransition(() => commentInteractions(comment.id, type));
+		startTransition(() => commentInteractions(comment.id, blogId, type));
 	};
 
 	// for update

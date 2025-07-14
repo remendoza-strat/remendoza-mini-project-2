@@ -12,6 +12,7 @@ export async function blogInteractions(blogId: string, type: "likes" | "upvote" 
             [type]: sql `${sql.identifier(type)} + 1`
         })
         .where(eq(tbl_blog.id, blogId));
+    revalidatePath(`/view`);
     revalidatePath(`/view/${blogId}`);
 }
 
@@ -76,6 +77,7 @@ export async function updateBlog(form: FormData){
             .where(eq(tbl_blog.id, blogId));
 
     // revalidate path and return value to display success toast
+    revalidatePath(`/view`);
     revalidatePath(`/view/${blogId}`);
     return {status: 1};
 }
