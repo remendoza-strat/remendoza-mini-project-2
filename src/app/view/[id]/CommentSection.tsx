@@ -156,7 +156,7 @@ function CommentCard({comment, blogId} : {comment: Comment; blogId: string}){
 								Name:
 							</label>
 							<input name="author" autoComplete="off" className="text-input w-full"
-								value={author || "anonymous"} onChange={(e) => setAuthor(e.target.value)}/>
+								value={author} onChange={(e) => setAuthor(e.target.value)}/>
 
 							<label htmlFor="content" className="custom-font-inter-tight text-white text-lg block m-2">
 								Comment:<span className="text-red-500">*</span>
