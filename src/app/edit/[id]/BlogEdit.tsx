@@ -52,8 +52,8 @@ export function BlogEdit({blog} : {blog: Blog}){
 	const handleDelete = async () => {
 		// create form data and add input contents
 		const formData = new FormData();
-		formData.append("blogId", blog.id);
-		formData.append("code", code);
+		formData.set("blogId", blog.id);
+		formData.set("code", code);
 
 		// execute delete blog and assign result
 		const result = await deleteBlog(formData);

@@ -16,7 +16,7 @@ export function CommentForm({blogId} : {blogId: string}){
 		// create form data and append blog id
 		const form = event.currentTarget;
 		const formData = new FormData(form);
-		formData.append("blogId", blogId);
+		formData.set("blogId", blogId);
 
 		// execute add comment and assign result
 		const result = await addComment(formData);
@@ -96,11 +96,11 @@ function CommentCard({comment, blogId} : {comment: Comment; blogId: string}){
 	const handleUpdate = async () => {
 		// create form data and add input contents
 		const formData = new FormData();
-		formData.append("commentId", comment.id);
-		formData.append("blogId", blogId);
-		formData.append("author", author);
-		formData.append("content", content);
-		formData.append("code", code);
+		formData.set("commentId", comment.id);
+		formData.set("blogId", blogId);
+		formData.set("author", author);
+		formData.set("content", content);
+		formData.set("code", code);
 		
 		// execute update comment and assign result
 		const result = await updateComment(formData);
@@ -123,9 +123,9 @@ function CommentCard({comment, blogId} : {comment: Comment; blogId: string}){
 	const handleDelete = async () => {
 		// create form data and add input contents
 		const formData = new FormData();
-		formData.append("commentId", comment.id);
-		formData.append("blogId", blogId);
-		formData.append("code", code);
+		formData.set("commentId", comment.id);
+		formData.set("blogId", blogId);
+		formData.set("code", code);
 
 		// execute delete comment and assign result
 		const result = await deleteComment(formData);

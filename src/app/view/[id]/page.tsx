@@ -10,8 +10,9 @@ import {CommentForm, CommentList} from "@/app/view/[id]/CommentSection";
 import {DateTimeFormatter} from "@/app/utils/DateTimeFormatter";
 
 export default async function BlogDetail({params} : {params: Promise<{id: string}>}){
-    // get id
+    // get params
     const {id} = await params;
+    if(!id) return notFound();
 
     // check validity of id
     const isUUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(id);

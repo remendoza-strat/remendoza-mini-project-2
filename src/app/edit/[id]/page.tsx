@@ -9,7 +9,11 @@ export default async function Edit({params} : {params: Promise<{id: string}>}){
     const {id} = await params;
     if(!id) return notFound();
 
-    // get the blog data based on the id
+    // check validity of id
+    const isUUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(id);
+    if(!isUUID) return notFound();
+
+    // get data of the blog
     const [blog] = await db
                             .select()
                             .from(tbl_blog)
